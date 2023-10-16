@@ -2,7 +2,7 @@ name: Daily Scheduled Workflow
 
 on:
   schedule:
-    - cron: '45 8 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
+    - cron: '48 8 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
 
 jobs:
   build:
