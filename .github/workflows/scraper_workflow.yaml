@@ -1,6 +1,9 @@
 name: Daily Scheduled Workflow
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '55 8 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
 
