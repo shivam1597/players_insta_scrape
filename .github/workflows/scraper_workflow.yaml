@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '55 8 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
+    - cron: '02 9 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
 
 jobs:
   build:
