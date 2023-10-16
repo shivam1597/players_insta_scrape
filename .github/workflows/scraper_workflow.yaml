@@ -1,0 +1,26 @@
+name: Daily Scheduled Workflow
+
+on:
+  schedule:
+    - cron: '45 8 * * *' # 2:20 PM UTC (IST 8:50 AM + 5 hours 30 minutes)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Specify a supported Python version (e.g., 3.7, 3.8, 3.9, etc.)
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  
+      
+      - name: Run your Python script
+        run: python playername_scraper.py
+
