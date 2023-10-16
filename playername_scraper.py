@@ -41,25 +41,20 @@ for team_url in all_teams_url:
         cricbuzz_players_info_list.append(player_dict_to_add)
 
 instagram_profile_list = []
-a = 0
 for cricbuzz_player in cricbuzz_players_info_list:
-    if a<5:
-        google_search_response = requests.get('https://www.google.com/search?q=instagram%3A+{}'.format(cricbuzz_player.get('player_name').replace(' ','+')))
-        google_soup = BeautifulSoup(google_search_response.text, 'html.parser')
-        parent_element = google_soup.find(class_='egMi0 kCrYT')
-        print(cricbuzz_player.get('player_name'))
-        print('<a' in parent_element)
-        link_element = parent_element.find('a')
-        instagram_map_to_add = {
-            'country': cricbuzz_player.get('country'),
-            'player_name': cricbuzz_player.get('player_name'),
-            'player_image': cricbuzz_player.get('player_image'),
-            'profile_url': cricbuzz_player.get('profile_url'),
-            'instagram_profile': link_element['href'].replace('/url?q=', '')
-        }
-        instagram_profile_list.append(instagram_map_to_add)
-        a = a+1
-        sleep(4)
+    google_search_response = requests.get('https://www.google.com/search?q=instagram%3A+{}'.format(cricbuzz_player.get('player_name').replace(' ','+')))
+    google_soup = BeautifulSoup(google_search_response.text, 'html.parser')
+    parent_element = google_soup.find(class_='egMi0 kCrYT')
+    link_element = parent_element.find('a')
+    instagram_map_to_add = {
+        'country': cricbuzz_player.get('country'),
+        'player_name': cricbuzz_player.get('player_name'),
+        'player_image': cricbuzz_player.get('player_image'),
+        'profile_url': cricbuzz_player.get('profile_url'),
+        'instagram_profile': link_element['href'].replace('/url?q=', '')
+    }
+    instagram_profile_list.append(instagram_map_to_add)
+    sleep(4)
 
 with open('insta_list.txt', mode='w+', encoding='utf-8', errors='ignore') as f:
     f.write(str(instagram_profile_list))
